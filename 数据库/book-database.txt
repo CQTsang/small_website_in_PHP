@@ -1,0 +1,239 @@
+drop database book;
+create database book;
+use book;
+drop table tb_member;
+CREATE TABLE tb_member(
+	email char(30)  PRIMARY KEY,
+	password char(80),
+	mname char(20),
+	mobile char(11),
+	address char(200),
+	jifen int,
+	ye Decimal(10,2)
+	)ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+	set names utf8;
+
+        delete from tb_member;
+        insert into tb_member values('a@qq.com',md5('123'),'小明','13912312123','佛山南海狮山大学城华南师范大学南海校区',0,0.0);
+        insert into tb_member values('b@qq.com',md5('123'),'小强','13088812888','江门市蓬江区景贤学校',0,0.0);
+	insert into tb_member values('aa@qq.com',md5('123'),'小蓝','13977777777','江门市江海区江门一中',0,0.0);
+
+ 	insert into tb_member values('a234@qq.com',md5('123'),'小李',null,null,0,0.0);
+	insert into tb_member values('a345@qq.com',md5('123'),'小张',null,null,0,0.0);
+
+select * from tb_member;
+
+
+
+CREATE TABLE admin(
+	username varchar(30)  PRIMARY KEY,
+	password char(80),
+	authority varchar(20)
+)ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+delete from admin;
+insert into admin values('admin',md5('123'),'1');
+insert into admin values('addbook',md5('123'),'2');
+insert into admin values('order',md5('123'),'3');
+
+
+CREATE TABLE cart(
+	cartID INT primary key auto_increment,
+	email char(30),
+	bookID char(15),
+	num int
+)ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+
+CREATE TABLE tb_customer(
+	custID  int  auto_increment,
+	email char(30),
+	sname char(10),
+	sex char(2),
+	mobile char(11),
+	address char(200),
+	zip char(6),
+	cdefault char(2),
+       PRIMARY KEY(custID)
+)ENGINE=MyISAM DEFAULT CHARSET=utf8;
+delete from tb_customer;
+
+insert into tb_customer(email,sname,sex,mobile,address,zip,cdefault) values('b@qq.com','孙燕姿','女','18012889889','佛山市南海区狮山大学城','528225','1');
+insert into tb_customer(email,sname,sex,mobile,address,zip,cdefault) values('b@qq.com','周杰伦','男','18022735825','在耳机里','528225','0');
+insert into tb_customer(email,sname,sex,mobile,address,zip,cdefault) values('b@qq.com','陈粒','女','18912123212','佛山市南海区狮山大学城','528225','0');
+insert into tb_customer(email,sname,sex,mobile,address,zip,cdefault) values('a234@qq.com','陈绮贞','女','13522132124','广州市新港东路144号','510009','1');
+insert into tb_customer(email,sname,sex,mobile,address,zip,cdefault) values('a234@qq.com','Adele','女','18921214244','广州市华南师范大学','510023','0');
+insert into tb_customer(email,sname,sex,mobile,address,zip,cdefault) values('a345@qq.com','Avril','女','18927712112','广东省佛山市南海区狮山大学城','528225','0');
+insert into tb_customer(email,sname,sex,mobile,address,zip,cdefault) values('a345@qq.com','朴树','男','18923212321','佛山南海狮山大学城','528225','0');
+insert into tb_customer(email,sname,sex,mobile,address,zip,cdefault) values('a234@qq.com','陈信宏','男','13399899898','广州市天河区天河路89号','528228','0');
+insert into tb_customer(email,sname,sex,mobile,address,zip,cdefault) values('a345@qq.com','刘彦明','男','13323232321','佛山南海狮山华南师范大学南海学院','121121','0');
+insert into tb_customer(email,sname,sex,mobile,address,zip,cdefault) values('a@qq.com','温尚翊','男','18923221212','佛山南海狮山大学城','523222','0');
+insert into tb_customer(email,sname,sex,mobile,address,zip,cdefault) values('a@qq.com','邓紫棋','女','18923121321','佛山南海狮山大学城','528225','0');
+insert into tb_customer(email,sname,sex,mobile,address,zip,cdefault) values('a@qq.com','蔡昇晏','男','18923232321','华南师范大学南海校区','121211','0');
+insert into tb_customer(email,sname,sex,mobile,address,zip,cdefault) values('aa@qq.com','蔡依林','女','1122121','华南师范大学南海学院','212121','0');
+insert into tb_customer(email,sname,sex,mobile,address,zip,cdefault) values('aa@qq.com','石锦航','男','18923234343','佛山南海狮山大学城','528225','1');
+
+select * from tb_customer;
+
+
+drop table myorder;
+CREATE TABLE myorder(
+	orderID int  PRIMARY KEY   auto_increment,
+	email char(30),
+	custID int,
+	shifu Decimal(10,2),
+	inputtime datetime,
+	peisongday varchar(50),
+	peisongtime varchar(100),
+	message varchar(100),
+	buy_name varchar(200),
+	pay_with varchar(8),
+	status varchar(10),
+	cltime datetime,
+	kddh  varchar(40),
+	beizhu varchar(100)
+)ENGINE=Innodb DEFAULT CHARSET=utf8;
+
+	insert into myorder values(null,'a@qq.com',3,606,'2018-05-26 12:10:20','2018-06-01',null,null,null,'网上支付','未评价','2018-06-02 10:10:10',null,null);
+	insert into myorder values(null,'a@qq.com',4,1678,'2018-05-27 12:10:20','2018-06-01',null,null,null,'网上支付','未评价','2018-06-02 10:10:10',null,null);
+
+
+	insert into myorder values(null,'b@qq.com',2,606,'2018-05-30 10:10:20','2018-06-01',null,null,null,'网上支付','未评价','2018-06-03 12:10:10',null,null);
+
+	insert into myorder values(null,'a@qq.com',5,178,'2018-05-28 12:10:20','2018-06-01',null,null,null,'网上支付','未评价','2018-06-03 10:10:10',null,null);
+
+select  email,shifu from myorder;
+
+
+
+	drop table if exists shoplist;
+	CREATE TABLE shoplist(
+	SLID int  PRIMARY KEY   auto_increment,
+	orderID int,
+	bookID char(30),
+	num int,
+	email char(30),
+	pjcontent varchar(100),
+	pjstar smallint,
+	pjtime datetime,
+	pjip char(14),
+	pjreply varchar(100)
+	)DEFAULT CHARSET=utf8;
+
+	insert into shoplist values(null,1,'9010783',1,null,null,null,null,null,null);
+	insert into shoplist values(null,1,'9010650',1,null,null,null,null,null,null);
+
+	insert into shoplist values(null,2,'9010783',1,null,null,null,null,null,null);
+	insert into shoplist values(null,2,'9010746',1,null,null,null,null,null,null);
+
+	insert into shoplist values(null,3,'9010783',1,null,null,null,null,null,null);
+	insert into shoplist values(null,3,'9010650',1,null,null,null,null,null,null);
+
+	insert into shoplist values(null,4,'9010712',1,null,null,null,null,null,null);
+	
+select * from shoplist;
+
+drop table book;
+CREATE TABLE book(
+	bookID char(15),
+	bname varchar(120),
+	writer char(20),
+	publisher char(20),
+	bclass1 char(20),
+	kaiben varchar(200),
+	baozhuang varchar(200),
+	pingjia varchar(400),
+	shuoming varchar(200),
+	price int,
+	yourprice int,
+	pictures varchar(30),
+	picturem varchar(30),
+	pictureb varchar(30),
+	pictured varchar(30),
+	cailiaopicture varchar(30),
+	bzpicture varchar(30),
+	tejia char(2),
+	SelledNum int,
+        PRIMARY KEY(bookID) 
+	)ENGINE=MyISAM DEFAULT CHARSET=utf8;
+delete from book;
+
+insert into book values('10001','马云 我可以没有对手','李子楠','文汇出版社','成功学','16开','精装','讲述了马云跌宕起伏的一生，是本好书','历经时间沉淀的商业智慧和人生感悟，以及创业以来的经历和各阶段思考，没有深奥的理论。 ',36.00,29.00,'10001_s.png','10001_m.png','10001_b.png','10001_d.png','','','是',35);
+
+insert into book values('10002','洛克菲勒写给儿子的38封信','约翰·D.洛克菲勒 ','文汇出版社','成功学','32开','精装','讲述了约翰·D.洛克菲勒对儿子的人生教诲，十分鼓舞人心','洛克菲勒白手起家，成为历史上富有的人不是偶然，而他对于如何获得成功，如何在磨难中发展自己等，所思所想，句句精辟。',32.80,30.00,'10002_s.png','10002_m.png','10002_b.png','10002_d.png','','','是',61);
+
+insert into book values('10003','人性的弱点','戴尔.卡耐基','中国华侨出版社','成功学','32开','平装','从人性的角度进行心理学分析，能够增长人的交际能力','利用许多生动的案例分析，以及人类长期积累的经验，教会做人和交际的能力。',32.00,27.80,'10003_s.png','10003_m.png','10003_b.png','10003_d.png','','','是',48);
+
+insert into book values('10004','墨菲定理','张雅婷','中国华侨出版社','心理学','32开','精装','是20世纪杰出的三大发现之一，这个发现让世人心神不宁','介绍了上百个经典的定律、法则、效应，扫描人生的全过程，力求成为人们更好的思想磨刀石和行为指南针',35.00,14.00,'10004_s.png','10004_m.png','10004_b.png','10004_d.png','','','是',28);
+
+insert into book values('10005','聪明人是怎样管理时间的','斯凯恩','中国华侨出版社','心理学','16开','精装','是20世纪杰出的三大发现之一，这个发现让世人心神不宁','里面的方法可以直接或者间接地帮人节约时间，进行更有效地时间安排，拥有和谐地人际关系',36.00,14.80,'10005_s.png','10005_m.png','10005_b.png','10005_d.png','','','是',178);
+
+insert into book values('10006','朱自清散文集','朱自清','文汇出版社','散文','16开','精装','优美的文笔，透露出了哲学的意义。','历经时间沉淀的商业智慧和人生感悟，以及创业以来的经历和各阶段思考，没有深奥的理论。',19.80,29.00,'10006_s.png','10006_m.png','10006_b.png','10006_d.png','','','是',35);
+
+insert into book values('10007','朝花夕拾','鲁迅','中国华侨出版社','散文','16开','精装','优美的文字，尖锐的笔锋，揭露出一个个社会现象','是鲁迅早期的产品，散文中讽刺了一个个社会现象，告诉读者全新的知识。',32.00,18.00,'10007_s.png','10007_m.png','10007_b.png','10007_d.png','','','是',591);
+
+insert into book values('10008','浮生六记+小窗幽记','沈复','中国华侨出版社','散文','32开','精装','美妙精彩，优雅动人','天地为大，入泥确曾被人系挂心头，沈复记闺房之乐，记闲情雅趣。',46.00,17.80,'10008_s.png','10008_m.png','10008_b.png','10008_d.png','','','是',48);
+
+insert into book values('10009','Python编程入门指南','明日科技','电子工业出版社','科技类','16开','精装','清晰明了介绍python的知识，是本好书','从简单到复杂介绍了python的语法和内容，让读者可以再实战和学习中提高。',80.00,49.00,'10009_s.png','10009_m.png','10009_b.png','10009_d.png','','','是',100);
+
+insert into book values('100010','零基础PHP从入门到精通','01快学','电子工业出版社','科技类','16开','精装','清晰明了介绍php的知识，是本好书','从简单到复杂介绍了php的语法和内容，让读者可以再实战和学习中提高。',88.00,38.00,'100010_s.png','100010_m.png','100010_b.png','100010_d.png','','','是',110);
+
+insert into book values('100011','java并发编程实战','盖茨','机械工业出版社','科技类','16开','平装','清晰明了介绍java并发的知识，很好','从简单到复杂介绍了java并发编程的语法和内容，让读者可以收获良多',90.00,38.00,'100011_s.png','100011_m.png','100011_b.png','100011_d.png','','','是',119);
+
+insert into book values('100012','HTML5+CSS3+JavaScrip','蔚蓝教育','机械工业出版社','科技类','16开','平装','清晰明了介绍网页制作的知识，很好','从简单到复杂介绍了网页制作中的语言的语法和内容，让读者可以收获良多',78.00,39.00,'100012_s.png','100012_m.png','100012_b.png','100012_d.png','','','是',120);
+
+insert into book values('100013','暗恋:橘生淮南:全二册','XIRON/磨铁','北京联合出版公司','言情类','16开','平装','从简单到复杂介绍了暗恋的过程和心酸，让读者可以收获良多',38.00,20.00,'100013_s.png','100013_m.png','100013_b.png','100013_d.png','','','是',9);
+
+insert into book values('100014','亲密关系','覃宇辉','北京联合出版公司','言情类','32开','精装','如何获得亲密关系，这本书很好','从简单到复杂介绍了亲密关系该怎么获得，让每个人都能拥有亲密关系',45.00,20.00,'100014_s.png','100014_m.png','100014_b.png','100014_d.png','','','是',16);
+
+insert into book values('100015','你的名字','新海诚 ','北京联合出版公司','言情类','32开','精装','如何获得你的名字，这本书很好','从简单到复杂介绍了你的名字该怎么获得，让每个人都如同书中那般爱恋。',36.00,21.00,'100015_s.png','100015_m.png','100015_b.png','100015_d.png','','','是',19);
+
+
+select count(*) from book;
+
+
+select count(*) from book;
+
+
+drop view if exists vcart;
+create view vcart 
+as
+Select cartID,cart.bookID,pictures,email,num,bname,price,yourprice
+from cart,book where book.bookID=cart.bookID;
+select * from vcart;
+
+
+
+drop view if exists showorder ;
+create view showorder
+as
+select myorder.orderID,myorder.email,inputtime,sname,address,pay_with,shifu,peisongday,status from myorder,tb_customer 
+where myorder.custID=tb_customer.custID  order by peisongday desc,orderID desc;
+
+select * from showorder;
+
+drop view showshoplist;
+create view showshoplist 
+As 
+Select orderID,SLID,num,email,a.bookID,bname,pictures,picturem,price,yourprice 
+from shoplist a,book b 
+where  a.bookID=b.bookID;
+
+select orderID,SLID,bookID,num,email from shoplist;
+select orderID,SLID,bookID,bname,num,email from showshoplist;
+
+
+
+drop view if exists peisong;
+create view peisong
+as
+select myorder.*,sname,mobile,address from myorder,tb_customer 
+where myorder.custID=tb_customer.custID and status='已付款' order by peisongday desc;
+
+
+
+
